@@ -1,9 +1,7 @@
-import java.awt.Color;
-import java.awt.Robot;
-import java.awt.MouseInfo;
-import java.awt.AWTException;
+import java.awt.*;
+import javax.swing.*;
 
-public class sampler extends JFrame {
+public class Sampler extends JFrame {
 	private JLabel red;
 	private JLabel green;
 	private JLabel blue;
@@ -13,7 +11,7 @@ public class sampler extends JFrame {
 	private JPanel main;
 	private Robot rob;
 
-	public sampler() {
+	public Sampler() throws AWTException {
 		super();
 
 		this.setLayout(new FlowLayout());
@@ -40,7 +38,7 @@ public class sampler extends JFrame {
 		this.main.add(this.left);
 		this.main.add(this.right);
 
-		this.left.setBackgroundColor(255, 255, 255);
+		this.left.setBackground( new Color(255, 255, 255));
 
 		this.add(main);
 
@@ -51,11 +49,11 @@ public class sampler extends JFrame {
 
 	public static void main(String[] args) {
 		try {
-
 			int x = MouseInfo.getPointerInfo().getLocation().x;
 			int y = MouseInfo.getPointerInfo().getLocation().y;
+            Sampler s = new Sampler();
 
-			Color colour = rob.getPixelColor(x, y);
+			Color colour = s.rob.getPixelColor(x, y);
 
 			System.out.println("x: " + x + " y: " + y);
 			System.out.println("r: " + colour.getRed());
@@ -64,7 +62,5 @@ public class sampler extends JFrame {
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-
-		return;
 	}
 }
